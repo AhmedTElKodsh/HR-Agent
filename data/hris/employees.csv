@@ -1,0 +1,11 @@
+employee_id,full_name,email,department,job_title,manager_id,hire_date,country,work_arrangement,employment_type,salary_band,fte
+E001,Hana Mahmoud,hana.mahmoud@nilecrest.example,Engineering,VP Engineering,,2018-02-01,Egypt,hybrid,full-time,B9,1.0
+E002,Ahmed Samir,ahmed.samir@nilecrest.example,Engineering,Engineering Manager,E001,2019-06-15,Egypt,hybrid,full-time,B7,1.0
+E003,Laila Hassan,laila.hassan@nilecrest.example,Engineering,Senior AI Engineer,E002,2021-09-01,Egypt,remote,full-time,B6,1.0
+E004,Mostafa Ali,mostafa.ali@nilecrest.example,Engineering,AI Engineer,E002,2024-01-10,Egypt,hybrid,full-time,B5,1.0
+E005,Jonas Weber,jonas.weber@nilecrest.example,Engineering,Backend Engineer,E002,2023-04-03,Germany,remote,full-time,B5,1.0
+E006,Dina Farouk,dina.farouk@nilecrest.example,People Operations,HR Business Partner,E008,2020-11-20,Egypt,hybrid,full-time,B6,1.0
+E007,Rana Yasser,rana.yasser@nilecrest.example,Support,Support Specialist,E009,2026-07-01,Egypt,on-site,full-time,B3,1.0
+E008,Sherif Kamal,sherif.kamal@nilecrest.example,People Operations,Head of People,,2017-05-01,Egypt,hybrid,full-time,B8,1.0
+E009,Mona Tawfik,mona.tawfik@nilecrest.example,Support,Support Team Lead,E001,2020-03-12,Egypt,on-site,full-time,B5,1.0
+E010,Lena Fischer,lena.fischer@nilecrest.example,Finance,Financial Analyst,E008,2022-08-29,Germany,hybrid,part-time,B4,0.6
