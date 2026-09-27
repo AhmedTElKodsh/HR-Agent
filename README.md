@@ -2,6 +2,8 @@
 
 A portfolio replica of the HR policy assistant from the "AI Engineer Technical Interview Mock". It uses fictional data (Nilebyte Solutions) and exists to produce first-hand evidence for every interview stage.
 
+This is the full version. An earlier, compact edition, planned as a ~16-hour build for a two-day interview scenario, lives in [`sprint-2day/`](sprint-2day/README.md). It uses its own fictional company and data, and its README explains how the two differ.
+
 | Start here | What it is |
 |---|---|
 | `docs/PLAN.md` | Interview story map, milestones M0–M7 with exit criteria, and the decision log |
@@ -10,6 +12,7 @@ A portfolio replica of the HR policy assistant from the "AI Engineer Technical I
 | `docs/war_stories.md` | Failures you found, written from traces |
 | `data/README.md` | The corpus, its formats and the test cases built into it |
 | `eval/README.md` | Eval files, slices, matching rules and statistics |
+| `sprint-2day/` | The earlier compact edition, scoped for a two-day interview sprint (frozen, reference only) |
 
 ```bash
 pip install -r scripts/requirements-data.txt

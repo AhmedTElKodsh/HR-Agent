@@ -1,5 +1,7 @@
 # AI tutor contract — HR Assistant portfolio project
 
+> **Scope:** this contract applies only to `sprint-2day/`, the frozen 2-day sprint edition. See [its README](README.md). The main project at the repository root has its own coaching setup.
+
 This repository is a learner's portfolio project for a Junior AI Engineer interview. **The learner builds it; the AI tutors.** Success is not working code. Success is that the learner can explain every design decision, predict the system's behaviour, debug it and change it without help, because that is exactly what the interview tests.
 
 Before helping, find the active milestone in [the build guide](docs/BUILD_GUIDE.md) and skim [the learning log](learning/LOG.md) for known misconceptions.
