@@ -1,0 +1,22 @@
+MARINA GIRGIS
+Aspiring Data Analyst · Giza
+marina.girgis@example.com · +20 100 000 0002
+
+PROFILE
+Business graduate who moved into analytics through a data bootcamp and a year-long internship. Strong in SQL and dashboards, learning Python.
+
+EXPERIENCE
+Data Analyst Intern, Retail Mart (fictional) — Sep 2025 to Aug 2026 (12 months, internship)
+- Wrote MySQL queries to produce daily sales and inventory reports for 40 stores.
+- Built Power BI dashboards for regional managers, replacing 5 manual Excel reports.
+- Cleaned supplier data in Excel using pivot tables and XLOOKUP.
+
+TRAINING
+Data Analytics Bootcamp (fictional academy) — 2025
+Modules: SQL, Power BI, Excel. Introductory Python module in progress.
+
+EDUCATION
+BA Business Administration — 2024
+
+SKILLS
+SQL (MySQL), Power BI, Excel (pivot tables, XLOOKUP), presentation skills

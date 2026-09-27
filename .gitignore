@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment and secrets - never commit provider keys
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Model and embedding caches (large, regenerable)
+.cache/
+models/
+.huggingface/
+*.onnx
+
+# Local databases and indexes
+*.db
+*.sqlite3
+pgdata/
+
+# Eval and trace output (results belong in docs/results.md, not as dumps)
+eval/runs/
+traces/
+*.log
+
+# OS and editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Archives dropped in the tree
+*.zip
+
+# NOTE: data/corpus/ and eval/counterfactuals/ ARE generated (by
+# scripts/build_corpus.py and scripts/make_counterfactuals.py) but are
+# committed on purpose: they are the fixture set every eval run and every
+# reported number depends on, and regenerating them must stay reproducible
+# rather than assumed. Do not add them here without changing how results
+# are reproduced.

@@ -1,0 +1,20 @@
+MARINA GIRGIS
+Data Analyst · Cairo
+marina.girgis@example.com · +20 100 000 0001
+
+SUMMARY
+Data analyst with 2 years of experience in fintech, building SQL pipelines, Python analyses and Tableau dashboards used by product and risk teams.
+
+EXPERIENCE
+Data Analyst, PayWave (fictional fintech) — Sep 2024 to present
+- Wrote PostgreSQL and BigQuery queries (CTEs, window functions) to build weekly KPI tables for 3 product teams.
+- Analysed customer churn in Python (pandas, matplotlib); findings cut onboarding drop-off by 8%.
+- Built and maintained 6 Tableau dashboards used in the weekly leadership review.
+- Designed and analysed 4 A/B tests on the sign-up flow using t-tests and confidence intervals.
+- Migrated 12 reporting models to dbt with tests and documentation.
+
+EDUCATION
+BSc Statistics — 2024
+
+SKILLS
+SQL (PostgreSQL, BigQuery), Python (pandas, NumPy, matplotlib), Tableau, dbt, A/B testing, Git

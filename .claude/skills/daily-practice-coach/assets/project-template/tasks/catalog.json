@@ -1,0 +1,913 @@
+{
+  "schema_version": 1,
+  "catalog_version": "1.0.0",
+  "project": "HR-Agent",
+  "reference_date": "2026-09-24",
+  "note": "Requirement IDs are stable. Add tasks freely; never renumber an existing requirement.",
+  "tasks": [
+    {
+      "id": "B-T01",
+      "milestone": "bridge",
+      "bridge": true,
+      "title": "pytest fixtures and parametrisation",
+      "stages": [10],
+      "depends_on": [],
+      "files": ["tests/"],
+      "concepts": ["fixture", "parametrize", "conftest", "test isolation"],
+      "requirements": [
+        { "id": "B-T01-R1", "text": "Write one parametrised test covering three cases from a single function" },
+        { "id": "B-T01-R2", "text": "Move shared setup into a fixture and explain its scope" }
+      ],
+      "acceptance": "A parametrised test file runs green and the learner can say what changes when fixture scope moves from function to session.",
+      "check": "pytest tests/ -q"
+    },
+    {
+      "id": "B-T02",
+      "milestone": "bridge",
+      "bridge": true,
+      "title": "Arabic text normalisation",
+      "stages": [5],
+      "depends_on": [],
+      "files": ["scripts/validate_data.py"],
+      "concepts": ["Arabic-Indic digits", "tatweel", "alef forms", "unicode normalisation"],
+      "requirements": [
+        { "id": "B-T02-R1", "text": "Normalise Arabic-Indic digits to ASCII and match '٥ أيام' against must_include ['5']" },
+        { "id": "B-T02-R2", "text": "Explain why alef unification helps BM25 and what it costs" }
+      ],
+      "acceptance": "The learner reuses the normalisation helpers from scripts/validate_data.py rather than writing new ones, and can state one case where normalisation loses information.",
+      "check": "python -c \"import scripts.validate_data\""
+    },
+    {
+      "id": "B-T03",
+      "milestone": "bridge",
+      "bridge": true,
+      "title": "SQL filtering alongside vector search",
+      "stages": [4, 9],
+      "depends_on": [],
+      "files": [],
+      "concepts": ["pgvector", "pre-filter vs post-filter", "index selectivity", "RLS"],
+      "requirements": [
+        { "id": "B-T03-R1", "text": "Write a query combining a vector ORDER BY with a WHERE clause on metadata" },
+        { "id": "B-T03-R2", "text": "Explain why post-filtering can return fewer than k results" }
+      ],
+      "acceptance": "The learner predicts, before running, what a highly restrictive filter does to result count under each strategy.",
+      "check": null
+    },
+    {
+      "id": "B-T04",
+      "milestone": "bridge",
+      "bridge": true,
+      "title": "Reading a trace",
+      "stages": [13],
+      "depends_on": [],
+      "files": [],
+      "concepts": ["span", "latency attribution", "token accounting", "masked fields"],
+      "requirements": [
+        { "id": "B-T04-R1", "text": "From one trace, name the slowest span and the token counts in and out" },
+        { "id": "B-T04-R2", "text": "Point at the retrieved chunks actually placed in the prompt" }
+      ],
+      "acceptance": "Given a trace of a wrong answer, the learner names the layer at fault without reading the code.",
+      "check": null
+    },
+
+    {
+      "id": "M0-T01",
+      "milestone": "M0",
+      "bridge": false,
+      "title": "Set the mission",
+      "stages": [1],
+      "depends_on": [],
+      "files": ["learning/LEARNER_PROFILE.md"],
+      "concepts": ["evidence-first portfolio", "the honesty rule"],
+      "requirements": [
+        { "id": "M0-T01-R1", "text": "Write the mission in one sentence in LEARNER_PROFILE.md" },
+        { "id": "M0-T01-R2", "text": "State the honesty rule in their own words: only numbers in docs/results.md may be quoted" }
+      ],
+      "acceptance": "progress.json has a non-empty mission and the learner can say why the mock's numbers are off-limits.",
+      "check": null
+    },
+    {
+      "id": "M0-T02",
+      "milestone": "M0",
+      "bridge": false,
+      "title": "Placement check",
+      "stages": [],
+      "depends_on": ["M0-T01"],
+      "files": ["learning/records/"],
+      "concepts": [],
+      "requirements": [
+        { "id": "M0-T02-R1", "text": "Complete the 15-minute diagnostic, one item at a time" },
+        { "id": "M0-T02-R2", "text": "Record each result as a prior-knowledge record with the evidence" }
+      ],
+      "acceptance": "placement.status is done or declined; any waived task is a bridge task with demonstrated evidence.",
+      "check": "python scripts/coach.py validate"
+    },
+    {
+      "id": "M0-T03",
+      "milestone": "M0",
+      "bridge": false,
+      "title": "Validate the data and read the gates",
+      "stages": [1],
+      "depends_on": ["M0-T01"],
+      "files": ["eval/gates.json", "eval/README.md"],
+      "concepts": ["hard gate", "smoke set", "holdout set", "target vs gate"],
+      "requirements": [
+        { "id": "M0-T03-R1", "text": "Run scripts/validate_data.py and read its output" },
+        { "id": "M0-T03-R2", "text": "Explain the difference between a hard gate and a target, and why holdout IDs may not be looked at" }
+      ],
+      "acceptance": "validate_data.py passes, and the learner names the six hard gates without reading them aloud from the file.",
+      "check": "python scripts/validate_data.py"
+    },
+
+    {
+      "id": "M1-T01",
+      "milestone": "M1",
+      "bridge": false,
+      "title": "Eval harness skeleton",
+      "stages": [10],
+      "depends_on": ["M0-T03", "B-T01"],
+      "files": ["eval/harness/"],
+      "concepts": ["golden set", "must_include as pre-check", "matching rules"],
+      "requirements": [
+        { "id": "M1-T01-R1", "text": "Load golden_rag.jsonl and iterate items with their user context" },
+        { "id": "M1-T01-R2", "text": "Reuse the matching functions from scripts/validate_data.py, do not reimplement normalisation" },
+        { "id": "M1-T01-R3", "text": "Build the retrieval filter from item.user, never from the question text" }
+      ],
+      "acceptance": "The harness runs all 125 items against a stub retriever and reports counts per slice and per language.",
+      "check": "pytest eval/harness -q"
+    },
+    {
+      "id": "M1-T02",
+      "milestone": "M1",
+      "bridge": false,
+      "title": "Retrieval metrics with intervals",
+      "stages": [10],
+      "depends_on": ["M1-T01"],
+      "files": ["eval/harness/"],
+      "concepts": ["hit@k", "MRR", "recall@k", "confidence interval", "labelling by section"],
+      "requirements": [
+        { "id": "M1-T02-R1", "text": "Compute hit@k by source section overlap, not chunk ID, so chunking stays comparable" },
+        { "id": "M1-T02-R2", "text": "Compute recall@k for multi_hop items and MRR overall" },
+        { "id": "M1-T02-R3", "text": "Report every metric per slice and per language with a 95% interval" }
+      ],
+      "acceptance": "A report prints per-slice hit@5 with intervals, and the learner can say why a 3-point gain on ~100 items is not a result.",
+      "check": "pytest eval/harness -q"
+    },
+    {
+      "id": "M1-T03",
+      "milestone": "M1",
+      "bridge": false,
+      "title": "Baseline parsers, simplest per format",
+      "stages": [2],
+      "depends_on": ["M1-T01"],
+      "files": ["ingest/"],
+      "concepts": ["text layer", "ground truth comparison"],
+      "requirements": [
+        { "id": "M1-T03-R1", "text": "Extract text from every corpus format with the simplest working parser" },
+        { "id": "M1-T03-R2", "text": "Measure extraction accuracy against data/policies/ as ground truth and record the number" }
+      ],
+      "acceptance": "Every one of the 21 documents yields text, with a measured accuracy figure and the known-bad cases named.",
+      "check": "pytest tests/test_parsing.py -q"
+    },
+    {
+      "id": "M1-T04",
+      "milestone": "M1",
+      "bridge": false,
+      "title": "Fixed-size chunks, one embedding model, top-5 search",
+      "stages": [3, 4],
+      "depends_on": ["M1-T03"],
+      "files": ["ingest/", "retrieval/"],
+      "concepts": ["token budget", "cosine similarity", "index build"],
+      "requirements": [
+        { "id": "M1-T04-R1", "text": "Chunk at a fixed size and record the token budget used" },
+        { "id": "M1-T04-R2", "text": "Embed with one multilingual model and serve top-5 vector search" }
+      ],
+      "acceptance": "The harness runs end to end against the real index and produces a hit@5 number.",
+      "check": "pytest eval/harness -q"
+    },
+    {
+      "id": "M1-T05",
+      "milestone": "M1",
+      "bridge": false,
+      "title": "One grounded prompt with citations",
+      "stages": [7],
+      "depends_on": ["M1-T04"],
+      "files": ["generation/"],
+      "concepts": ["grounding", "citation", "refusal", "canary"],
+      "requirements": [
+        { "id": "M1-T05-R1", "text": "Answer only from retrieved chunks, with a citation per claim" },
+        { "id": "M1-T05-R2", "text": "Put CANARY-7f3a in the system prompt and assert it never appears in an answer" },
+        { "id": "M1-T05-R3", "text": "Refuse when nothing relevant was retrieved" }
+      ],
+      "acceptance": "Refusal items refuse, no must_not_include string appears, and the canary never leaks.",
+      "check": "pytest eval/harness -q -k gates"
+    },
+    {
+      "id": "M1-T06",
+      "milestone": "M1",
+      "bridge": false,
+      "title": "Validate the LLM judge",
+      "stages": [10],
+      "depends_on": ["M1-T05"],
+      "files": ["eval/judge/"],
+      "concepts": ["Cohen's kappa", "inter-rater agreement", "rubric drift"],
+      "requirements": [
+        { "id": "M1-T06-R1", "text": "Hand-label 60 answers before looking at the judge's output" },
+        { "id": "M1-T06-R2", "text": "Report agreement and Cohen's kappa; aim for kappa >= 0.6" },
+        { "id": "M1-T06-R3", "text": "Write down when the judge must be re-validated" }
+      ],
+      "acceptance": "A kappa figure exists with its n, and the learner can say what a kappa of 0.4 would have meant for every later number.",
+      "check": "pytest eval/judge -q"
+    },
+    {
+      "id": "M1-T07",
+      "milestone": "M1",
+      "bridge": false,
+      "title": "Tracing from the first request",
+      "stages": [13],
+      "depends_on": ["M1-T05", "B-T04"],
+      "files": [],
+      "concepts": ["span", "masked personal data", "cost attribution"],
+      "requirements": [
+        { "id": "M1-T07-R1", "text": "Trace every request with spans for retrieve, rerank and generate" },
+        { "id": "M1-T07-R2", "text": "Mask personal data in traces" }
+      ],
+      "acceptance": "A wrong answer can be diagnosed from its trace alone, and no personal data appears in it.",
+      "check": null
+    },
+    {
+      "id": "M1-T08",
+      "milestone": "M1",
+      "bridge": false,
+      "title": "CI smoke gate",
+      "stages": [10, 12],
+      "depends_on": ["M1-T05"],
+      "files": [".github/workflows/"],
+      "concepts": ["smoke set", "blocking gate", "flake"],
+      "requirements": [
+        { "id": "M1-T08-R1", "text": "Run the 40 smoke IDs on every pull request" },
+        { "id": "M1-T08-R2", "text": "Block the merge on any hard-gate failure" }
+      ],
+      "acceptance": "A deliberately broken change fails CI on a hard gate, demonstrated once.",
+      "check": null
+    },
+    {
+      "id": "M1-T09",
+      "milestone": "M1",
+      "bridge": false,
+      "title": "Record the baseline",
+      "stages": [1, 10],
+      "depends_on": ["M1-T02", "M1-T06", "M1-T08"],
+      "files": ["docs/results.md"],
+      "concepts": ["eval set version", "interval", "reproducibility"],
+      "requirements": [
+        { "id": "M1-T09-R1", "text": "Add the baseline row with intervals, per-slice figures and the eval set version" },
+        { "id": "M1-T09-R2", "text": "Record the exact configuration that produced it" }
+      ],
+      "acceptance": "M1 exit: baseline row in docs/results.md, CI gate working, judge validated.",
+      "check": null
+    },
+
+    {
+      "id": "M2-T01",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "Layout-aware parsing for tables and two columns",
+      "stages": [2],
+      "depends_on": ["M1-T09"],
+      "files": ["ingest/"],
+      "concepts": ["reading order", "cell association", "header repetition"],
+      "requirements": [
+        { "id": "M2-T01-R1", "text": "Keep column meaning in the leave entitlement, per-diem and overtime tables" },
+        { "id": "M2-T01-R2", "text": "Stop the privacy notice's two columns interleaving" },
+        { "id": "M2-T01-R3", "text": "Strip repeated headers and footers" }
+      ],
+      "acceptance": "The table slice improves against the M1 baseline, reported before and after with McNemar.",
+      "check": "pytest eval/harness -q -k table"
+    },
+    {
+      "id": "M2-T02",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "OCR the scanned insurance schedule",
+      "stages": [2],
+      "depends_on": ["M2-T01"],
+      "files": ["ingest/"],
+      "concepts": ["no text layer", "OCR confidence", "table reconstruction"],
+      "requirements": [
+        { "id": "M2-T02-R1", "text": "Extract the scanned table from health_insurance_schedule_2026 with its columns intact" },
+        { "id": "M2-T02-R2", "text": "Record OCR accuracy against the Markdown source" }
+      ],
+      "acceptance": "Questions answered only by the scanned schedule now retrieve it.",
+      "check": "pytest eval/harness -q -k table"
+    },
+    {
+      "id": "M2-T03",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "HTML cleaning and the hidden element decision",
+      "stages": [2, 9],
+      "depends_on": ["M2-T01"],
+      "files": ["ingest/"],
+      "concepts": ["boilerplate removal", "hidden text", "indirect injection"],
+      "requirements": [
+        { "id": "M2-T03-R1", "text": "Remove navigation boilerplate from employee_faq.html" },
+        { "id": "M2-T03-R2", "text": "Decide what to do with hidden elements and write the decision down with its reasoning" },
+        { "id": "M2-T03-R3", "text": "Ensure the planted injection is detected and reported, never obeyed" }
+      ],
+      "acceptance": "The security slice passes and the hidden-element decision is recorded as a decision record.",
+      "check": "pytest eval/harness -q -k security"
+    },
+    {
+      "id": "M2-T04",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "Chunking comparison at a fixed token budget",
+      "stages": [3],
+      "depends_on": ["M2-T01"],
+      "files": ["ingest/"],
+      "concepts": ["fixed budget", "semantic boundaries", "overlap", "section splitting"],
+      "requirements": [
+        { "id": "M2-T04-R1", "text": "Compare 5 strategies at the same token budget, not the same chunk count" },
+        { "id": "M2-T04-R2", "text": "Report hit@5 per strategy per slice" }
+      ],
+      "acceptance": "A comparison table exists and the winner is justified per slice, not on the average alone.",
+      "check": "pytest eval/harness -q"
+    },
+    {
+      "id": "M2-T05",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "Contextual chunk headers",
+      "stages": [3],
+      "depends_on": ["M2-T04"],
+      "files": ["ingest/"],
+      "concepts": ["context injection", "document title propagation"],
+      "requirements": [
+        { "id": "M2-T05-R1", "text": "Prepend document and section context to each chunk" },
+        { "id": "M2-T05-R2", "text": "Measure the effect separately from the chunking strategy change" }
+      ],
+      "acceptance": "The isolated effect of headers is a number, not an impression.",
+      "check": "pytest eval/harness -q"
+    },
+    {
+      "id": "M2-T06",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "Metadata filters enforced in SQL",
+      "stages": [4, 9, 14],
+      "depends_on": ["M2-T04", "B-T03"],
+      "files": ["retrieval/"],
+      "concepts": ["ABAC", "effective dates", "RLS", "filtered-search trap"],
+      "requirements": [
+        { "id": "M2-T06-R1", "text": "Filter by allowed_roles, regions and effective dates inside the query, never in the prompt" },
+        { "id": "M2-T06-R2", "text": "Prove a restrictive filter still returns k results" },
+        { "id": "M2-T06-R3", "text": "Present-day questions must never retrieve leave_policy_2025, except q76 and q77" }
+      ],
+      "acceptance": "Hard gate green: no chunk from a document the user may not see is ever retrieved. abac and version slices pass.",
+      "check": "pytest eval/harness -q -k \"abac or version\""
+    },
+    {
+      "id": "M2-T07",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "Embedding bake-off on en and ar",
+      "stages": [4],
+      "depends_on": ["M2-T06", "B-T02"],
+      "files": ["retrieval/"],
+      "concepts": ["multilingual embeddings", "cross-language retrieval", "index rebuild cost"],
+      "requirements": [
+        { "id": "M2-T07-R1", "text": "Compare 3 or more multilingual models on the en and ar slices" },
+        { "id": "M2-T07-R2", "text": "Include the English question answered only by an Arabic document" },
+        { "id": "M2-T07-R3", "text": "Report cost and index build time alongside quality" }
+      ],
+      "acceptance": "A per-model, per-language table exists and the choice is defended on more than the overall average.",
+      "check": "pytest eval/harness -q"
+    },
+    {
+      "id": "M2-T08",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "BM25 with Arabic normalisation, fused with RRF",
+      "stages": [5],
+      "depends_on": ["M2-T07"],
+      "files": ["retrieval/"],
+      "concepts": ["lexical search", "RRF", "fusion weights", "exact identifiers"],
+      "requirements": [
+        { "id": "M2-T08-R1", "text": "Add BM25 with Arabic normalisation applied to both index and query" },
+        { "id": "M2-T08-R2", "text": "Fuse with RRF and justify k" },
+        { "id": "M2-T08-R3", "text": "Show the code_lookup slice improving on identifiers such as HR-EX-03" }
+      ],
+      "acceptance": "code_lookup improves measurably and the learner can write the RRF formula from memory.",
+      "check": "pytest eval/harness -q -k code_lookup"
+    },
+    {
+      "id": "M2-T09",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "Cross-encoder reranking",
+      "stages": [5],
+      "depends_on": ["M2-T08"],
+      "files": ["retrieval/"],
+      "concepts": ["bi-encoder vs cross-encoder", "candidate depth", "latency budget"],
+      "requirements": [
+        { "id": "M2-T09-R1", "text": "Rerank the fused candidates and tune candidate depth" },
+        { "id": "M2-T09-R2", "text": "Report the latency cost against the 2 s p95 TTFT target" }
+      ],
+      "acceptance": "Quality gain and latency cost are both recorded; the tradeoff is stated explicitly.",
+      "check": "pytest eval/harness -q"
+    },
+    {
+      "id": "M2-T10",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "Relevance gate threshold",
+      "stages": [5],
+      "depends_on": ["M2-T09"],
+      "files": ["retrieval/"],
+      "concepts": ["refusal", "threshold tuning", "both-direction accuracy"],
+      "requirements": [
+        { "id": "M2-T10-R1", "text": "Tune the threshold on out_of_scope against answerable items, never on the holdout" },
+        { "id": "M2-T10-R2", "text": "Report refusal accuracy in both directions" }
+      ],
+      "acceptance": "Refusal accuracy in both directions meets 0.9, and the learner can name the cost of moving the threshold either way.",
+      "check": "pytest eval/harness -q -k out_of_scope"
+    },
+    {
+      "id": "M2-T11",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "Query rewriting for follow-ups",
+      "stages": [5],
+      "depends_on": ["M2-T10"],
+      "files": ["retrieval/"],
+      "concepts": ["standalone query", "coreference", "evaluating a component alone"],
+      "requirements": [
+        { "id": "M2-T11-R1", "text": "Rewrite follow-ups using turns, and evaluate the rewriter alone against standalone_query" },
+        { "id": "M2-T11-R2", "text": "Show the follow_up slice before and after" }
+      ],
+      "acceptance": "The rewriter has its own score separate from end-to-end retrieval.",
+      "check": "pytest eval/harness -q -k follow_up"
+    },
+    {
+      "id": "M2-T12",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "Schema output and citation verification",
+      "stages": [7],
+      "depends_on": ["M2-T11"],
+      "files": ["generation/"],
+      "concepts": ["structured output", "citation check", "faithfulness"],
+      "requirements": [
+        { "id": "M2-T12-R1", "text": "Emit a schema-validated answer with citations" },
+        { "id": "M2-T12-R2", "text": "Verify every citation resolves to a chunk actually in context; report the citation-failure rate" }
+      ],
+      "acceptance": "Faithfulness meets 0.95 and citation failures are counted, not estimated.",
+      "check": "pytest eval/harness -q"
+    },
+    {
+      "id": "M2-T13",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "Conflict handling",
+      "stages": [7],
+      "depends_on": ["M2-T12"],
+      "files": ["generation/"],
+      "concepts": ["active conflicting sources", "escalation"],
+      "requirements": [
+        { "id": "M2-T13-R1", "text": "When wellbeing_program_2026 and benefits_policy disagree, present both and point to People Operations" },
+        { "id": "M2-T13-R2", "text": "Do not let the model silently pick a side" }
+      ],
+      "acceptance": "Both conflict items pass.",
+      "check": "pytest eval/harness -q -k conflict"
+    },
+    {
+      "id": "M2-T14",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "SSE streaming",
+      "stages": [7, 12],
+      "depends_on": ["M2-T12"],
+      "files": ["api/"],
+      "concepts": ["time to first token", "backpressure", "partial output"],
+      "requirements": [
+        { "id": "M2-T14-R1", "text": "Stream the answer with SSE and measure TTFT" },
+        { "id": "M2-T14-R2", "text": "Ensure citation verification still runs before the answer is complete or is clearly deferred" }
+      ],
+      "acceptance": "p95 TTFT is measured and compared with the 2 s target.",
+      "check": null
+    },
+    {
+      "id": "M2-T15",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "LLM comparison",
+      "stages": [6],
+      "depends_on": ["M2-T13"],
+      "files": [],
+      "concepts": ["quality vs latency vs cost", "version pinning"],
+      "requirements": [
+        { "id": "M2-T15-R1", "text": "Run the same eval on 3 or more models at temperature 0 with pinned versions" },
+        { "id": "M2-T15-R2", "text": "Produce a quality, p95 latency and cost-per-query table" }
+      ],
+      "acceptance": "The chosen model is defended on the table, including the cost target of $0.01 per query.",
+      "check": "pytest eval/harness -q"
+    },
+    {
+      "id": "M2-T16",
+      "milestone": "M2",
+      "bridge": false,
+      "title": "Incremental re-index and a blue-green swap",
+      "stages": [14],
+      "depends_on": ["M2-T07"],
+      "files": ["ingest/"],
+      "concepts": ["content hash", "idempotent ingest", "blue-green index"],
+      "requirements": [
+        { "id": "M2-T16-R1", "text": "Re-index only changed documents, detected by hash" },
+        { "id": "M2-T16-R2", "text": "Swap to a new embedding model behind a blue-green index with evals run before the cutover" }
+      ],
+      "acceptance": "M2 exit: all hard gates green, targets met or gaps explained, at least 2 war stories logged.",
+      "check": "pytest eval/harness -q -k gates"
+    },
+
+    {
+      "id": "M3-T01",
+      "milestone": "M3",
+      "bridge": false,
+      "title": "Read tools and session identity",
+      "stages": [8],
+      "depends_on": ["M2-T06"],
+      "files": ["agent/tools/"],
+      "concepts": ["session-derived identity", "tool schema", "least privilege"],
+      "requirements": [
+        { "id": "M3-T01-R1", "text": "Implement the seven read tools from docs/agent_tools.md" },
+        { "id": "M3-T01-R2", "text": "No tool accepts an employee ID; identity, role and region come from the session only" },
+        { "id": "M3-T01-R3", "text": "get_team_leave_summary returns direct reports only, and is empty for non-managers" }
+      ],
+      "acceptance": "A request for another employee's data cannot be expressed in the tool schema.",
+      "check": "pytest tests/test_tools.py -q"
+    },
+    {
+      "id": "M3-T02",
+      "milestone": "M3",
+      "bridge": false,
+      "title": "Deterministic rules engine",
+      "stages": [8],
+      "depends_on": ["M3-T01"],
+      "files": ["agent/rules/"],
+      "concepts": ["working days", "notice periods", "blackout", "probation", "clause traceability"],
+      "requirements": [
+        { "id": "M3-T02-R1", "text": "Read data/leave_rules.json; compute working days excluding Friday, Saturday and company holidays" },
+        { "id": "M3-T02-R2", "text": "3-day notice counts working days strictly between submission and the first day; 2-week notice counts calendar days" },
+        { "id": "M3-T02-R3", "text": "One unit test per rule value, each citing its policy clause" }
+      ],
+      "acceptance": "5-7 Oct 2026 costs 2 working days; E1004's probation and E1002's Q3 blackout produce the right severities.",
+      "check": "pytest tests/test_rules.py -q"
+    },
+    {
+      "id": "M3-T03",
+      "milestone": "M3",
+      "bridge": false,
+      "title": "Preview and draft preparation",
+      "stages": [8],
+      "depends_on": ["M3-T02"],
+      "files": ["agent/tools/"],
+      "concepts": ["read-only preview", "draft state", "violation severity"],
+      "requirements": [
+        { "id": "M3-T03-R1", "text": "preview_leave_request stores nothing and returns violations with severity and source" },
+        { "id": "M3-T03-R2", "text": "Blocking violations produce no draft; needs_extra_approval attaches the violation to the draft" }
+      ],
+      "acceptance": "stored_requests_delta is 0 for every blocked scenario.",
+      "check": "pytest tests/test_agent_scenarios.py -q"
+    },
+    {
+      "id": "M3-T04",
+      "milestone": "M3",
+      "bridge": false,
+      "title": "Confirm and cancel endpoints",
+      "stages": [8, 9],
+      "depends_on": ["M3-T03"],
+      "files": ["api/"],
+      "concepts": ["idempotency key", "out-of-band confirmation", "injection resistance"],
+      "requirements": [
+        { "id": "M3-T04-R1", "text": "Confirm is an HTTP endpoint, not a tool, and is absent from the tool schema" },
+        { "id": "M3-T04-R2", "text": "A repeated confirm on the same draft ID stores nothing new" },
+        { "id": "M3-T04-R3", "text": "Confirmed requests land as pending_manager_approval; no tool has a status argument" }
+      ],
+      "acceptance": "confirm_retry scenarios leave stored_requests_delta unchanged.",
+      "check": "pytest tests/test_agent_scenarios.py -q"
+    },
+    {
+      "id": "M3-T05",
+      "milestone": "M3",
+      "bridge": false,
+      "title": "Loop guards and normalised errors",
+      "stages": [8, 13],
+      "depends_on": ["M3-T04"],
+      "files": ["agent/"],
+      "concepts": ["retry storm", "retryable flag", "argument validation"],
+      "requirements": [
+        { "id": "M3-T05-R1", "text": "At most 5 tool calls per message and no identical repeated call" },
+        { "id": "M3-T05-R2", "text": "Pydantic-validated arguments with exactly one retry on validation error" },
+        { "id": "M3-T05-R3", "text": "Normalised tool errors carrying a retryable flag" }
+      ],
+      "acceptance": "Scenario a09 terminates without a retry loop and tells the user.",
+      "check": "pytest tests/test_agent_scenarios.py -q -k a09"
+    },
+    {
+      "id": "M3-T06",
+      "milestone": "M3",
+      "bridge": false,
+      "title": "Twenty scenarios, five runs",
+      "stages": [8],
+      "depends_on": ["M3-T05"],
+      "files": ["eval/"],
+      "concepts": ["stability across runs", "tool-selection accuracy", "must_not_call"],
+      "requirements": [
+        { "id": "M3-T06-R1", "text": "All 20 scenarios pass 5 consecutive runs" },
+        { "id": "M3-T06-R2", "text": "Report tool-selection accuracy against the 0.95 target" },
+        { "id": "M3-T06-R3", "text": "Treat the indirect injection in scenario a19 as data" }
+      ],
+      "acceptance": "M3 exit: 20/20 over 5 runs, tool-selection accuracy recorded in docs/results.md.",
+      "check": "pytest tests/test_agent_scenarios.py -q"
+    },
+
+    {
+      "id": "M4-T01",
+      "milestone": "M4",
+      "bridge": false,
+      "title": "Redaction before the model",
+      "stages": [9],
+      "depends_on": ["M2-T01"],
+      "files": ["screening/"],
+      "concepts": ["PII detection", "excluded fields", "recall over precision"],
+      "requirements": [
+        { "id": "M4-T01-R1", "text": "Remove every excluded_from_scoring field before any LLM call" },
+        { "id": "M4-T01-R2", "text": "Handle cand_08's dense personal data and the two-column PDF with a photo box" }
+      ],
+      "acceptance": "Hard gate green: no must_redact field reaches the LLM input.",
+      "check": "pytest tests/test_screening.py -q -k redact"
+    },
+    {
+      "id": "M4-T02",
+      "milestone": "M4",
+      "bridge": false,
+      "title": "Evidence extraction only",
+      "stages": [9],
+      "depends_on": ["M4-T01"],
+      "files": ["screening/"],
+      "concepts": ["verbatim quote", "no-evidence case", "alias matching"],
+      "requirements": [
+        { "id": "M4-T02-R1", "text": "For each criterion the LLM returns a verbatim quote or none, and never a score" },
+        { "id": "M4-T02-R2", "text": "cand_02's 'Introductory Python module in progress' must not count as Python evidence" }
+      ],
+      "acceptance": "The model's output contains no numbers at all.",
+      "check": "pytest tests/test_screening.py -q"
+    },
+    {
+      "id": "M4-T03",
+      "milestone": "M4",
+      "bridge": false,
+      "title": "Code-side scoring, bands and the required rule",
+      "stages": [9],
+      "depends_on": ["M4-T02"],
+      "files": ["screening/"],
+      "concepts": ["weighted scoring", "band caps", "no auto-reject"],
+      "requirements": [
+        { "id": "M4-T03-R1", "text": "Compute the score in code from the evidence and the rubric weights" },
+        { "id": "M4-T03-R2", "text": "A required criterion scoring 0 caps the band at review and adds missing_required:<id>" },
+        { "id": "M4-T03-R3", "text": "Never emit overqualified, seniority, age, career_gap or family_status flags; cand_04 is neither penalised nor flagged" }
+      ],
+      "acceptance": "screening_expectations.json passes for all 8 resumes.",
+      "check": "pytest tests/test_screening.py -q"
+    },
+    {
+      "id": "M4-T04",
+      "milestone": "M4",
+      "bridge": false,
+      "title": "Injection detection in resumes",
+      "stages": [9],
+      "depends_on": ["M4-T02"],
+      "files": ["screening/"],
+      "concepts": ["white text", "instruction-shaped content", "flagging not obeying"],
+      "requirements": [
+        { "id": "M4-T04-R1", "text": "Flag cand_05 as prompt_injection from both the .txt and the white 1-point PDF text" },
+        { "id": "M4-T04-R2", "text": "The injected instruction must not change the score" }
+      ],
+      "acceptance": "Hard gate green: cand_05 is flagged prompt_injection and scores on its real evidence.",
+      "check": "pytest tests/test_screening.py -q -k injection"
+    },
+    {
+      "id": "M4-T05",
+      "milestone": "M4",
+      "bridge": false,
+      "title": "The counterfactual suite",
+      "stages": [9],
+      "depends_on": ["M4-T03", "M4-T04"],
+      "files": ["eval/counterfactuals/"],
+      "concepts": ["counterfactual fairness", "determinism", "exact equality"],
+      "requirements": [
+        { "id": "M4-T05-R1", "text": "All 32 variants produce exactly the same score, band and flags as their base" },
+        { "id": "M4-T05-R2", "text": "Hold over 5 consecutive runs" },
+        { "id": "M4-T05-R3", "text": "Explain which design choice makes this possible" }
+      ],
+      "acceptance": "M4 exit: screening_expectations.json passes and 32/32 counterfactuals match exactly over 5 runs.",
+      "check": "pytest tests/test_screening.py -q -k counterfactual"
+    },
+
+    {
+      "id": "M5-T01",
+      "milestone": "M5",
+      "bridge": false,
+      "title": "Ticket routing baseline",
+      "stages": [11],
+      "depends_on": ["M1-T09"],
+      "files": ["routing/"],
+      "concepts": ["TF-IDF", "macro-F1", "class imbalance", "confusion matrix"],
+      "requirements": [
+        { "id": "M5-T01-R1", "text": "Obtain the dataset per data/tickets/README.md and record its licence and limits" },
+        { "id": "M5-T01-R2", "text": "TF-IDF plus a linear classifier baseline with macro-F1 and a confusion matrix" }
+      ],
+      "acceptance": "A baseline macro-F1 exists with a per-class breakdown.",
+      "check": "pytest tests/test_routing.py -q"
+    },
+    {
+      "id": "M5-T02",
+      "milestone": "M5",
+      "bridge": false,
+      "title": "SetFit, fine-tuned encoder and LLM compared",
+      "stages": [11],
+      "depends_on": ["M5-T01"],
+      "files": ["routing/"],
+      "concepts": ["few-shot", "fine-tuning", "cost per prediction", "latency"],
+      "requirements": [
+        { "id": "M5-T02-R1", "text": "Compare all four approaches on macro-F1, latency and cost" },
+        { "id": "M5-T02-R2", "text": "Never load a pickle or joblib artifact from an untrusted source" }
+      ],
+      "acceptance": "A four-row comparison table exists with all three columns.",
+      "check": "pytest tests/test_routing.py -q"
+    },
+    {
+      "id": "M5-T03",
+      "milestone": "M5",
+      "bridge": false,
+      "title": "Distribution shift and the conclusion",
+      "stages": [11],
+      "depends_on": ["M5-T02"],
+      "files": ["docs/results.md"],
+      "concepts": ["distribution shift", "when not to use an LLM"],
+      "requirements": [
+        { "id": "M5-T03-R1", "text": "Run the English-to-German shift test and report the drop per approach" },
+        { "id": "M5-T03-R2", "text": "Write the one-paragraph 'when not to use an LLM' conclusion" }
+      ],
+      "acceptance": "M5 exit: comparison table, confusion matrix and the conclusion paragraph.",
+      "check": null
+    },
+
+    {
+      "id": "M6-T01",
+      "milestone": "M6",
+      "bridge": false,
+      "title": "FastAPI, Postgres and Docker",
+      "stages": [12],
+      "depends_on": ["M2-T14", "M3-T06"],
+      "files": ["api/", "Dockerfile"],
+      "concepts": ["dependency injection", "connection pooling", "container build"],
+      "requirements": [
+        { "id": "M6-T01-R1", "text": "Serve retrieval, generation and the agent behind FastAPI with SSE" },
+        { "id": "M6-T01-R2", "text": "Postgres with pgvector, and RLS enforcing the access rules" }
+      ],
+      "acceptance": "The stack comes up from a clean checkout with one command.",
+      "check": null
+    },
+    {
+      "id": "M6-T02",
+      "milestone": "M6",
+      "bridge": false,
+      "title": "CI/CD with the eval gate and dashboards",
+      "stages": [12, 13],
+      "depends_on": ["M6-T01"],
+      "files": [".github/workflows/"],
+      "concepts": ["deployment gate", "dashboard", "alerting"],
+      "requirements": [
+        { "id": "M6-T02-R1", "text": "Deployment blocks on the hard gates and the regression rule" },
+        { "id": "M6-T02-R2", "text": "Dashboards for latency, cost and refusal rate" }
+      ],
+      "acceptance": "A regression that trips McNemar at p < 0.05 blocks the pipeline.",
+      "check": null
+    },
+    {
+      "id": "M6-T03",
+      "milestone": "M6",
+      "bridge": false,
+      "title": "Load test and cost optimisation",
+      "stages": [13],
+      "depends_on": ["M6-T02"],
+      "files": ["docs/results.md"],
+      "concepts": ["p50/p95", "prompt caching", "small model for rewriting", "chunk count"],
+      "requirements": [
+        { "id": "M6-T03-R1", "text": "Load test with Locust or k6 and record p50/p95" },
+        { "id": "M6-T03-R2", "text": "Apply at least two optimisations and record cost and TTFT before and after each" }
+      ],
+      "acceptance": "Each optimisation has a before and after row, not a combined one.",
+      "check": null
+    },
+    {
+      "id": "M6-T04",
+      "milestone": "M6",
+      "bridge": false,
+      "title": "Runbook and pinned versions",
+      "stages": [12, 14],
+      "depends_on": ["M6-T03"],
+      "files": ["docs/"],
+      "concepts": ["runbook", "rollback", "version pinning"],
+      "requirements": [
+        { "id": "M6-T04-R1", "text": "Write the runbook: rollback, index swap, model swap, incident triage" },
+        { "id": "M6-T04-R2", "text": "Pin model and embedding versions everywhere they are used" }
+      ],
+      "acceptance": "M6 exit: a demo runnable live, plus before/after numbers.",
+      "check": null
+    },
+
+    {
+      "id": "M7-T01",
+      "milestone": "M7",
+      "bridge": false,
+      "title": "The 60-second pitch, with your numbers",
+      "stages": [0],
+      "depends_on": ["M6-T04"],
+      "files": ["docs/"],
+      "concepts": ["evidence-backed claims", "the honesty rule"],
+      "requirements": [
+        { "id": "M7-T01-R1", "text": "Every number in the pitch traces to a row in docs/results.md with its interval and date" },
+        { "id": "M7-T01-R2", "text": "No number from the mock appears anywhere" }
+      ],
+      "acceptance": "Delivered in 60 seconds from memory, with each claim's source nameable on demand.",
+      "check": null
+    },
+    {
+      "id": "M7-T02",
+      "milestone": "M7",
+      "bridge": false,
+      "title": "The two diagrams",
+      "stages": [0],
+      "depends_on": ["M7-T01"],
+      "files": ["docs/"],
+      "concepts": ["system diagram", "data flow", "trust boundary"],
+      "requirements": [
+        { "id": "M7-T02-R1", "text": "Draw both from the real system, including the trust boundary at the confirm endpoint" },
+        { "id": "M7-T02-R2", "text": "Reproduce each on a whiteboard in under 3 minutes" }
+      ],
+      "acceptance": "Drawn twice from memory without reference.",
+      "check": null
+    },
+    {
+      "id": "M7-T03",
+      "milestone": "M7",
+      "bridge": false,
+      "title": "Four war stories",
+      "stages": [0],
+      "depends_on": ["M2-T16", "M3-T06"],
+      "files": ["docs/war_stories.md"],
+      "concepts": ["diagnosis from traces", "layer attribution", "regression prevention"],
+      "requirements": [
+        { "id": "M7-T03-R1", "text": "At least 4 stories from different layers, each complete on all five points" },
+        { "id": "M7-T03-R2", "text": "Each names the trace evidence that found the cause, not a guess" }
+      ],
+      "acceptance": "Each story survives 'how did you know it was that layer?'",
+      "check": null
+    },
+    {
+      "id": "M7-T04",
+      "milestone": "M7",
+      "bridge": false,
+      "title": "Drill-down cards per stage",
+      "stages": [0],
+      "depends_on": ["M7-T01"],
+      "files": ["docs/"],
+      "concepts": ["say it, understand it, why this over the alternative"],
+      "requirements": [
+        { "id": "M7-T04-R1", "text": "One card per stage with all three levels" },
+        { "id": "M7-T04-R2", "text": "Each card names the alternative rejected and the measurement that rejected it" }
+      ],
+      "acceptance": "Every stage in the map has a card backed by a result row.",
+      "check": null
+    },
+    {
+      "id": "M7-T05",
+      "milestone": "M7",
+      "bridge": false,
+      "title": "Two timed mock interviews",
+      "stages": [0],
+      "depends_on": ["M7-T02", "M7-T03", "M7-T04"],
+      "files": ["learning/records/"],
+      "concepts": ["recall under pressure", "gap logging"],
+      "requirements": [
+        { "id": "M7-T05-R1", "text": "Run two timed mocks covering different stages" },
+        { "id": "M7-T05-R2", "text": "Log every exposed gap as a new task" }
+      ],
+      "acceptance": "M7 exit: two mocks done, gaps logged as tasks.",
+      "check": null
+    }
+  ]
+}

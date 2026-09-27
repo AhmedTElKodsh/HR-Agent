@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "description": "Machine-readable leave rules for deterministic code (the rules engine behind preview_leave_request). The LLM explains results; it never computes them. Every value cites the clause it encodes, and a unit test must check each value against the policy text so the two cannot drift apart.",
+    "policy": "leave_policy (HR-LV-01, version 2026.1)",
+    "reference_date": "2026-09-24"
+  },
+  "weekend_days": {"value": ["Friday", "Saturday"], "source": "leave_policy §1.3"},
+  "annual_entitlement": {
+    "value": [
+      {"min_years_service": 0, "days_per_year": 21, "monthly_accrual": 1.75},
+      {"min_years_service": 10, "days_per_year": 30, "monthly_accrual": 2.5}
+    ],
+    "source": "leave_policy §2.1 Table 1, §2.2"
+  },
+  "part_time": {"value": "entitlement x fte, rounded down to the nearest half day", "source": "leave_policy §1.2; hris_seed _meta.notes"},
+  "probation": {"value": {"months": 3, "exception_approver": "HR Business Partner", "exception_form": "written"}, "source": "leave_policy §2.3; onboarding_offboarding_policy §1.1"},
+  "notice": {
+    "value": [
+      {"applies_when": "consecutive_working_days <= 3", "min_notice_working_days": 3},
+      {"applies_when": "consecutive_working_days > 3", "min_notice_calendar_days": 14}
+    ],
+    "counting": "min_notice_working_days counts working days strictly between the submission date and the first day of leave. min_notice_calendar_days = first_day - submission_date, in calendar days.",
+    "severity": "blocking",
+    "source": "leave_policy §2.4"
+  },
+  "balance": {"value": "remaining = annual_entitled - annual_taken - annual_pending; a request larger than remaining is blocked (suggest unpaid leave, §5.4)", "severity": "blocking", "source": "hris_seed _meta.notes; leave_policy §5.4"},
+  "blackout": {
+    "value": {"departments": ["Finance"], "last_n_working_days_of_quarter": 5, "quarter_end_dates": ["03-31", "06-30", "09-30", "12-31"], "override_approver": "Finance Director"},
+    "severity": "needs_extra_approval",
+    "source": "leave_policy §2.7"
+  },
+  "approval": {"value": {"approver": "direct_manager", "status_after_submission": "pending_manager_approval"}, "source": "leave_policy §2.5"},
+  "carryover": {"value": {"max_days": 5, "use_by_month_day": "03-31"}, "source": "leave_policy §2.6"},
+  "public_holidays_deducted": {"value": false, "source": "leave_policy §6.1"},
+  "severity_meanings": {
+    "blocking": "The request cannot be prepared. Explain the rule and the alternatives.",
+    "needs_extra_approval": "A draft may be prepared only if the user explicitly chooses to proceed; the violation and the extra approver are attached to the request."
+  }
+}

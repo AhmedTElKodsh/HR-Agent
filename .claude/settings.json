@@ -1,0 +1,6 @@
+{
+  "enabledPlugins": {
+    "bmad-method@bmad": true,
+    "bmad-toolbox@bmad": true
+  }
+}

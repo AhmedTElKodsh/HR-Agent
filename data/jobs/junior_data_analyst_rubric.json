@@ -1,0 +1,156 @@
+{
+  "job_id": "JDA-2026-01",
+  "title": "Junior Data Analyst",
+  "criteria": [
+    {
+      "id": "sql",
+      "type": "skill",
+      "required": true,
+      "weight": 25,
+      "description": "SQL for querying and transforming data",
+      "aliases": [
+        "SQL",
+        "PostgreSQL",
+        "MySQL",
+        "BigQuery",
+        "SQL Server",
+        "T-SQL",
+        "Snowflake"
+      ]
+    },
+    {
+      "id": "python",
+      "type": "skill",
+      "required": true,
+      "weight": 20,
+      "description": "Python for data analysis",
+      "aliases": [
+        "Python",
+        "pandas",
+        "NumPy"
+      ]
+    },
+    {
+      "id": "bi_dashboards",
+      "type": "skill",
+      "required": true,
+      "weight": 15,
+      "description": "Building dashboards in a BI tool",
+      "aliases": [
+        "Tableau",
+        "Power BI",
+        "Looker",
+        "Looker Studio"
+      ]
+    },
+    {
+      "id": "statistics",
+      "type": "skill",
+      "required": false,
+      "weight": 10,
+      "description": "Statistics or A/B testing",
+      "aliases": [
+        "statistics",
+        "A/B testing",
+        "hypothesis testing",
+        "regression"
+      ]
+    },
+    {
+      "id": "excel",
+      "type": "skill",
+      "required": false,
+      "weight": 5,
+      "description": "Excel (pivot tables, lookups)",
+      "aliases": [
+        "Excel",
+        "pivot tables",
+        "VLOOKUP",
+        "XLOOKUP"
+      ]
+    },
+    {
+      "id": "data_pipelines",
+      "type": "skill",
+      "required": false,
+      "weight": 5,
+      "description": "Exposure to dbt or Airflow",
+      "aliases": [
+        "dbt",
+        "Airflow"
+      ]
+    },
+    {
+      "id": "experience",
+      "type": "experience",
+      "required": true,
+      "weight": 15,
+      "description": "Years of experience in a data or analytics role",
+      "min_years": 1.0,
+      "internship_multiplier": 0.5,
+      "scoring": "full weight at >= min_years, otherwise linear: weight * (effective_years / min_years)"
+    },
+    {
+      "id": "education",
+      "type": "education",
+      "required": false,
+      "weight": 5,
+      "description": "Bachelor's degree in a quantitative field",
+      "qualifying_fields": [
+        "statistics",
+        "mathematics",
+        "computer science",
+        "engineering",
+        "economics",
+        "data science",
+        "physics"
+      ]
+    }
+  ],
+  "max_score": 100,
+  "bands": [
+    {
+      "name": "advance",
+      "min_score": 70,
+      "action": "Recommend for recruiter review and interview"
+    },
+    {
+      "name": "review",
+      "min_score": 50,
+      "action": "Borderline: recruiter reads the full resume"
+    },
+    {
+      "name": "not_advance",
+      "min_score": 0,
+      "action": "Recruiter confirms before any rejection is sent"
+    }
+  ],
+  "excluded_from_scoring": [
+    "name",
+    "gender",
+    "pronouns",
+    "age",
+    "date_of_birth",
+    "nationality",
+    "marital_status",
+    "photo",
+    "home_address",
+    "career_gaps",
+    "university_name"
+  ],
+  "human_review_required": true,
+  "scoring_method": "The LLM only extracts evidence: for each criterion, a verbatim quote from the resume (or none). Deterministic code turns that evidence into points with the weights below. The LLM never outputs a score, so identical evidence always gives an identical score.",
+  "required_rule": {
+    "rule": "If any criterion with required=true scores 0, the band is capped at 'review' and each missing criterion is listed as a flag (missing_required:<id>). A missing required skill never triggers an automatic rejection; a recruiter decides.",
+    "cap_band": "review",
+    "flag_format": "missing_required:<criterion_id>"
+  },
+  "flags_never_raised": [
+    "overqualified",
+    "seniority",
+    "age",
+    "career_gap",
+    "family_status"
+  ],
+  "flags_never_raised_reason": "Seniority can act as a proxy for age, and gaps and family status are excluded from scoring. Surfacing them as flags would pass the same bias to the human reviewer."
+}

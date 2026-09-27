@@ -1,0 +1,33 @@
+AYA HASSAN
+Data Analyst
+
+Personal details
+Date of birth: 14/02/1991
+National ID: 12345678901234
+Marital status: Married, 2 children
+Address: Apartment 4, 12 Example Street, Cairo
+Phone: +20 100 000 0008
+Email: aya.hassan@example.com
+[Photo attached]
+
+SUMMARY
+Data analyst with 4 years of experience in e-commerce analytics, returning to full-time work after a career break.
+
+EXPERIENCE
+Freelance Data Consultant — Jun 2025 to present
+- Build Excel and Looker Studio dashboards for 3 small online shops.
+
+Career break — Jun 2023 to May 2025
+- Full-time caregiver for a family member.
+
+Data Analyst, MarketHub (fictional) — Mar 2019 to May 2023
+- Wrote SQL (MySQL) queries for marketplace sales and seller performance reporting.
+- Analysed customer cohorts and retention in Python (pandas).
+- Built Looker dashboards used by the commercial team.
+- Ran regression analyses and A/B test readouts for pricing experiments.
+
+EDUCATION
+BSc Mathematics — 2012
+
+SKILLS
+SQL (MySQL), Python (pandas), Looker, Looker Studio, statistics, A/B testing, Excel

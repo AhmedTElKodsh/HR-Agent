@@ -1,0 +1,320 @@
+{
+  "_meta": {
+    "description": "Fictional HR system (HRIS) seed data for the HR agent. All people and values are invented.",
+    "reference_today": "2026-09-24",
+    "weekend_days": [
+      "Friday",
+      "Saturday"
+    ],
+    "leave_year": 2026,
+    "notes": [
+      "annual_taken is the authoritative number of annual leave days used this year; leave_requests only holds recent requests.",
+      "remaining annual leave = annual_entitled - annual_taken - annual_pending.",
+      "Pro-rated entitlements (mid-year joiners, part-time) are rounded down to the nearest half day.",
+      "Salaries are deliberately NOT stored here (data minimisation): no tool can leak what the system does not hold.",
+      "public_holidays are the dates the company observes (announced by HR). Islamic holidays follow the moon sighting; the dates here are the ones HR announced for 2026."
+    ]
+  },
+  "employees": [
+    {
+      "employee_id": "E1001",
+      "name": "Tarek Nabil",
+      "job_title": "Data Engineer",
+      "department": "Engineering",
+      "manager_id": "E1005",
+      "hire_date": "2023-03-01",
+      "employment_type": "full_time",
+      "fte": 1.0,
+      "work_model": "hybrid",
+      "location": "Cairo"
+    },
+    {
+      "employee_id": "E1002",
+      "name": "Salma Fathy",
+      "job_title": "Financial Analyst",
+      "department": "Finance",
+      "manager_id": "E1006",
+      "hire_date": "2021-06-15",
+      "employment_type": "full_time",
+      "fte": 1.0,
+      "work_model": "hybrid",
+      "location": "Cairo"
+    },
+    {
+      "employee_id": "E1003",
+      "name": "Sara Adel",
+      "job_title": "Product Manager",
+      "department": "Product",
+      "manager_id": "E1007",
+      "hire_date": "2019-01-10",
+      "employment_type": "full_time",
+      "fte": 1.0,
+      "work_model": "hybrid",
+      "location": "Cairo"
+    },
+    {
+      "employee_id": "E1004",
+      "name": "Mahmoud Ali",
+      "job_title": "Junior Software Developer",
+      "department": "Engineering",
+      "manager_id": "E1005",
+      "hire_date": "2026-08-17",
+      "employment_type": "full_time",
+      "fte": 1.0,
+      "work_model": "hybrid",
+      "location": "Cairo"
+    },
+    {
+      "employee_id": "E1005",
+      "name": "Rania Hosny",
+      "job_title": "Engineering Manager",
+      "department": "Engineering",
+      "manager_id": "E1007",
+      "hire_date": "2015-06-01",
+      "employment_type": "full_time",
+      "fte": 1.0,
+      "work_model": "hybrid",
+      "location": "Cairo"
+    },
+    {
+      "employee_id": "E1006",
+      "name": "Hesham Gaber",
+      "job_title": "Finance Director",
+      "department": "Finance",
+      "manager_id": "E1007",
+      "hire_date": "2018-04-01",
+      "employment_type": "full_time",
+      "fte": 1.0,
+      "work_model": "hybrid",
+      "location": "Cairo"
+    },
+    {
+      "employee_id": "E1007",
+      "name": "Mona Said",
+      "job_title": "Chief Operating Officer",
+      "department": "Executive",
+      "manager_id": null,
+      "hire_date": "2015-02-01",
+      "employment_type": "full_time",
+      "fte": 1.0,
+      "work_model": "hybrid",
+      "location": "Cairo"
+    },
+    {
+      "employee_id": "E1008",
+      "name": "Ali Hamdy",
+      "job_title": "Product Designer",
+      "department": "Product",
+      "manager_id": "E1003",
+      "hire_date": "2024-11-01",
+      "employment_type": "part_time",
+      "fte": 0.5,
+      "work_model": "remote",
+      "location": "Alexandria"
+    }
+  ],
+  "leave_balances": [
+    {
+      "employee_id": "E1001",
+      "year": 2026,
+      "annual_entitled": 21.0,
+      "annual_taken": 9.0,
+      "annual_pending": 0.0,
+      "sick_entitled": 10.0,
+      "sick_taken": 2.0
+    },
+    {
+      "employee_id": "E1002",
+      "year": 2026,
+      "annual_entitled": 21.0,
+      "annual_taken": 15.0,
+      "annual_pending": 0.0,
+      "sick_entitled": 10.0,
+      "sick_taken": 0.0
+    },
+    {
+      "employee_id": "E1003",
+      "year": 2026,
+      "annual_entitled": 21.0,
+      "annual_taken": 4.0,
+      "annual_pending": 3.0,
+      "sick_entitled": 10.0,
+      "sick_taken": 1.0
+    },
+    {
+      "employee_id": "E1004",
+      "year": 2026,
+      "annual_entitled": 7.5,
+      "annual_taken": 0.0,
+      "annual_pending": 0.0,
+      "sick_entitled": 10.0,
+      "sick_taken": 0.0
+    },
+    {
+      "employee_id": "E1005",
+      "year": 2026,
+      "annual_entitled": 30.0,
+      "annual_taken": 20.0,
+      "annual_pending": 0.0,
+      "sick_entitled": 10.0,
+      "sick_taken": 3.0
+    },
+    {
+      "employee_id": "E1006",
+      "year": 2026,
+      "annual_entitled": 21.0,
+      "annual_taken": 12.0,
+      "annual_pending": 0.0,
+      "sick_entitled": 10.0,
+      "sick_taken": 0.0
+    },
+    {
+      "employee_id": "E1007",
+      "year": 2026,
+      "annual_entitled": 30.0,
+      "annual_taken": 10.0,
+      "annual_pending": 0.0,
+      "sick_entitled": 10.0,
+      "sick_taken": 0.0
+    },
+    {
+      "employee_id": "E1008",
+      "year": 2026,
+      "annual_entitled": 10.5,
+      "annual_taken": 3.0,
+      "annual_pending": 0.0,
+      "sick_entitled": 5.0,
+      "sick_taken": 0.0
+    }
+  ],
+  "leave_requests": [
+    {
+      "request_id": "LR-0001",
+      "employee_id": "E1001",
+      "leave_type": "annual",
+      "start_date": "2026-03-08",
+      "end_date": "2026-03-12",
+      "working_days": 5.0,
+      "status": "approved",
+      "created_at": "2026-02-15"
+    },
+    {
+      "request_id": "LR-0002",
+      "employee_id": "E1001",
+      "leave_type": "annual",
+      "start_date": "2026-07-05",
+      "end_date": "2026-07-08",
+      "working_days": 4.0,
+      "status": "approved",
+      "created_at": "2026-06-10"
+    },
+    {
+      "request_id": "LR-0003",
+      "employee_id": "E1003",
+      "leave_type": "annual",
+      "start_date": "2026-10-19",
+      "end_date": "2026-10-21",
+      "working_days": 3.0,
+      "status": "pending_manager_approval",
+      "created_at": "2026-09-20"
+    },
+    {
+      "request_id": "LR-0004",
+      "employee_id": "E1002",
+      "leave_type": "annual",
+      "start_date": "2026-08-02",
+      "end_date": "2026-08-13",
+      "working_days": 10.0,
+      "status": "approved",
+      "created_at": "2026-07-01"
+    },
+    {
+      "request_id": "LR-0005",
+      "employee_id": "E1005",
+      "leave_type": "sick",
+      "start_date": "2026-09-13",
+      "end_date": "2026-09-15",
+      "working_days": 3.0,
+      "status": "approved",
+      "created_at": "2026-09-13"
+    }
+  ],
+  "public_holidays": [
+    {
+      "date": "2026-01-01",
+      "name": "New Year's Day"
+    },
+    {
+      "date": "2026-01-07",
+      "name": "Coptic Christmas"
+    },
+    {
+      "date": "2026-01-29",
+      "name": "Revolution Day (25 January, observed)"
+    },
+    {
+      "date": "2026-03-19",
+      "name": "Eid al-Fitr holiday"
+    },
+    {
+      "date": "2026-03-22",
+      "name": "Eid al-Fitr holiday"
+    },
+    {
+      "date": "2026-03-23",
+      "name": "Eid al-Fitr holiday"
+    },
+    {
+      "date": "2026-04-13",
+      "name": "Sham El-Nessim (Spring Festival)"
+    },
+    {
+      "date": "2026-04-25",
+      "name": "Sinai Liberation Day"
+    },
+    {
+      "date": "2026-05-01",
+      "name": "Labour Day"
+    },
+    {
+      "date": "2026-05-26",
+      "name": "Arafat Day"
+    },
+    {
+      "date": "2026-05-27",
+      "name": "Eid al-Adha"
+    },
+    {
+      "date": "2026-05-28",
+      "name": "Eid al-Adha holiday"
+    },
+    {
+      "date": "2026-05-31",
+      "name": "Eid al-Adha holiday"
+    },
+    {
+      "date": "2026-06-18",
+      "name": "Islamic New Year"
+    },
+    {
+      "date": "2026-07-02",
+      "name": "30 June Revolution Day (observed)"
+    },
+    {
+      "date": "2026-07-23",
+      "name": "Revolution Day"
+    },
+    {
+      "date": "2026-08-27",
+      "name": "Prophet's Birthday"
+    },
+    {
+      "date": "2026-10-06",
+      "name": "Armed Forces Day"
+    },
+    {
+      "date": "2026-12-24",
+      "name": "Company Winter Day"
+    }
+  ]
+}

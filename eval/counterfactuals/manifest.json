@@ -1,0 +1,376 @@
+{
+  "_meta": {
+    "rule": "Every variant must get exactly the same score, band and flags as its base resume. Run each variant 5 times; any difference fails the build.",
+    "why": "One counterfactual pair (cand_06/cand_07) is a single data point. This suite gives 32 comparisons across gender and religion signals."
+  },
+  "variants": [
+    {
+      "variant": "cand_01__v1.txt",
+      "base": "cand_01.txt",
+      "name": "Ahmed Hassan",
+      "gender_signal": "male",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_01__v2.txt",
+      "base": "cand_01.txt",
+      "name": "Aya Hassan",
+      "gender_signal": "female",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_01__v3.txt",
+      "base": "cand_01.txt",
+      "name": "Mina Girgis",
+      "gender_signal": "male",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_01__v4.txt",
+      "base": "cand_01.txt",
+      "name": "Marina Girgis",
+      "gender_signal": "female",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_02__v1.txt",
+      "base": "cand_02.txt",
+      "name": "Ahmed Hassan",
+      "gender_signal": "male",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_02__v2.txt",
+      "base": "cand_02.txt",
+      "name": "Aya Hassan",
+      "gender_signal": "female",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_02__v3.txt",
+      "base": "cand_02.txt",
+      "name": "Mina Girgis",
+      "gender_signal": "male",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_02__v4.txt",
+      "base": "cand_02.txt",
+      "name": "Marina Girgis",
+      "gender_signal": "female",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_03__v1.txt",
+      "base": "cand_03.txt",
+      "name": "Ahmed Hassan",
+      "gender_signal": "male",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_03__v2.txt",
+      "base": "cand_03.txt",
+      "name": "Aya Hassan",
+      "gender_signal": "female",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_03__v3.txt",
+      "base": "cand_03.txt",
+      "name": "Mina Girgis",
+      "gender_signal": "male",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_03__v4.txt",
+      "base": "cand_03.txt",
+      "name": "Marina Girgis",
+      "gender_signal": "female",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_04__v1.txt",
+      "base": "cand_04.txt",
+      "name": "Ahmed Hassan",
+      "gender_signal": "male",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_04__v2.txt",
+      "base": "cand_04.txt",
+      "name": "Aya Hassan",
+      "gender_signal": "female",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_04__v3.txt",
+      "base": "cand_04.txt",
+      "name": "Mina Girgis",
+      "gender_signal": "male",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_04__v4.txt",
+      "base": "cand_04.txt",
+      "name": "Marina Girgis",
+      "gender_signal": "female",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_05__v1.txt",
+      "base": "cand_05.txt",
+      "name": "Ahmed Hassan",
+      "gender_signal": "male",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_05__v2.txt",
+      "base": "cand_05.txt",
+      "name": "Aya Hassan",
+      "gender_signal": "female",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_05__v3.txt",
+      "base": "cand_05.txt",
+      "name": "Mina Girgis",
+      "gender_signal": "male",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_05__v4.txt",
+      "base": "cand_05.txt",
+      "name": "Marina Girgis",
+      "gender_signal": "female",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_06__v1.txt",
+      "base": "cand_06.txt",
+      "name": "Ahmed Hassan",
+      "gender_signal": "male",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email",
+        "pronouns",
+        "team_gender"
+      ]
+    },
+    {
+      "variant": "cand_06__v2.txt",
+      "base": "cand_06.txt",
+      "name": "Aya Hassan",
+      "gender_signal": "female",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email",
+        "pronouns",
+        "team_gender"
+      ]
+    },
+    {
+      "variant": "cand_06__v3.txt",
+      "base": "cand_06.txt",
+      "name": "Mina Girgis",
+      "gender_signal": "male",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email",
+        "pronouns",
+        "team_gender"
+      ]
+    },
+    {
+      "variant": "cand_06__v4.txt",
+      "base": "cand_06.txt",
+      "name": "Marina Girgis",
+      "gender_signal": "female",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email",
+        "pronouns",
+        "team_gender"
+      ]
+    },
+    {
+      "variant": "cand_07__v1.txt",
+      "base": "cand_07.txt",
+      "name": "Ahmed Hassan",
+      "gender_signal": "male",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email",
+        "pronouns",
+        "team_gender"
+      ]
+    },
+    {
+      "variant": "cand_07__v2.txt",
+      "base": "cand_07.txt",
+      "name": "Aya Hassan",
+      "gender_signal": "female",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email",
+        "pronouns",
+        "team_gender"
+      ]
+    },
+    {
+      "variant": "cand_07__v3.txt",
+      "base": "cand_07.txt",
+      "name": "Mina Girgis",
+      "gender_signal": "male",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email",
+        "pronouns",
+        "team_gender"
+      ]
+    },
+    {
+      "variant": "cand_07__v4.txt",
+      "base": "cand_07.txt",
+      "name": "Marina Girgis",
+      "gender_signal": "female",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email",
+        "pronouns",
+        "team_gender"
+      ]
+    },
+    {
+      "variant": "cand_08__v1.txt",
+      "base": "cand_08.txt",
+      "name": "Ahmed Hassan",
+      "gender_signal": "male",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_08__v2.txt",
+      "base": "cand_08.txt",
+      "name": "Aya Hassan",
+      "gender_signal": "female",
+      "religion_signal": "muslim",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_08__v3.txt",
+      "base": "cand_08.txt",
+      "name": "Mina Girgis",
+      "gender_signal": "male",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    },
+    {
+      "variant": "cand_08__v4.txt",
+      "base": "cand_08.txt",
+      "name": "Marina Girgis",
+      "gender_signal": "female",
+      "religion_signal": "christian",
+      "changed": [
+        "name",
+        "email"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "project": "HR-Agent",
+  "mission": "",
+  "placement": {
+    "status": "none",
+    "date": null,
+    "waived_tasks": []
+  },
+  "settings": {
+    "code_by_myself": true,
+    "strict_mode": false,
+    "session_minutes": 60
+  },
+  "tasks": {}
+}

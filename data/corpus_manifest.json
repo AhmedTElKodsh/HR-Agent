@@ -1,0 +1,505 @@
+{
+ "_meta": {
+  "description": "Metadata for every document in data/corpus/. This is what a document store such as SharePoint would give the ingestion pipeline. Ingest data/corpus/ only; data/policies/ holds the clean authoring sources, used as ground truth when checking parser output.",
+  "roles": [
+   "employee",
+   "manager",
+   "hr_staff"
+  ],
+  "regions": [
+   "Cairo",
+   "Alexandria"
+  ],
+  "retrieval_rules": [
+   "Filter by allowed_roles and regions from the signed-in user's session, never from the question text.",
+   "For questions about the present, use documents where effective_from <= reference_date and (effective_to is null or reference_date <= effective_to).",
+   "A superseded version is still retrievable when the question asks about its period (for example 'in 2025').",
+   "Regional guidelines override company-wide policies for employees of that region when they conflict."
+  ],
+  "reference_date": "2026-09-24"
+ },
+ "documents": [
+  {
+   "doc_key": "leave_policy",
+   "title": "Leave Policy",
+   "doc_id": "HR-LV-01",
+   "version": "2026.1",
+   "doc_family": "leave_policy",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations",
+   "format": "pdf",
+   "file": "data/corpus/leave_policy.pdf",
+   "source": "data/policies/leave_policy.md",
+   "supersedes": "leave_policy_2025"
+  },
+  {
+   "doc_key": "leave_policy_2025",
+   "title": "Leave Policy",
+   "doc_id": "HR-LV-01",
+   "version": "2025.1",
+   "doc_family": "leave_policy",
+   "effective_from": "2025-01-01",
+   "effective_to": "2025-12-31",
+   "status": "superseded",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations",
+   "format": "pdf",
+   "file": "data/corpus/leave_policy_2025.pdf",
+   "source": "data/policies/leave_policy_2025.md"
+  },
+  {
+   "doc_key": "remote_work_policy",
+   "title": "Remote and Hybrid Work Policy",
+   "doc_id": "HR-RW-02",
+   "version": "2026.1",
+   "doc_family": "remote_work_policy",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations",
+   "format": "docx",
+   "file": "data/corpus/remote_work_policy.docx",
+   "source": "data/policies/remote_work_policy.md"
+  },
+  {
+   "doc_key": "expenses_travel_policy",
+   "title": "Expenses and Travel Policy",
+   "doc_id": "HR-EX-03",
+   "version": "2026.1",
+   "doc_family": "expenses_travel_policy",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "Finance",
+   "format": "pdf",
+   "file": "data/corpus/expenses_travel_policy.pdf",
+   "source": "data/policies/expenses_travel_policy.md"
+  },
+  {
+   "doc_key": "benefits_policy",
+   "title": "Benefits Policy",
+   "doc_id": "HR-BN-04",
+   "version": "2026.1",
+   "doc_family": "benefits_policy",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations",
+   "format": "pdf",
+   "file": "data/corpus/benefits_policy.pdf",
+   "source": "data/policies/benefits_policy.md"
+  },
+  {
+   "doc_key": "health_insurance_schedule_2026",
+   "title": "Health Insurance Schedule of Benefits 2026",
+   "doc_id": "HR-BN-04-S1",
+   "version": "2026.1",
+   "doc_family": "health_insurance_schedule",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations",
+   "format": "pdf_scanned",
+   "file": "data/corpus/health_insurance_schedule_2026.pdf",
+   "source": "data/policies/health_insurance_schedule_2026.md"
+  },
+  {
+   "doc_key": "performance_review_policy",
+   "title": "Performance Review Policy",
+   "doc_id": "HR-PR-05",
+   "version": "2026.1",
+   "doc_family": "performance_review_policy",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations",
+   "format": "md",
+   "file": "data/corpus/performance_review_policy.md",
+   "source": "data/policies/performance_review_policy.md"
+  },
+  {
+   "doc_key": "code_of_conduct",
+   "title": "Code of Conduct",
+   "doc_id": "HR-CC-06",
+   "version": "2026.1",
+   "doc_family": "code_of_conduct",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "Legal and Compliance",
+   "format": "docx",
+   "file": "data/corpus/code_of_conduct.docx",
+   "source": "data/policies/code_of_conduct.md"
+  },
+  {
+   "doc_key": "onboarding_offboarding_policy",
+   "title": "Onboarding and Offboarding Policy",
+   "doc_id": "HR-OB-07",
+   "version": "2026.1",
+   "doc_family": "onboarding_offboarding_policy",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations",
+   "format": "docx",
+   "file": "data/corpus/onboarding_offboarding_policy.docx",
+   "source": "data/policies/onboarding_offboarding_policy.md"
+  },
+  {
+   "doc_key": "salary_bands_2026",
+   "title": "Salary Bands 2026",
+   "doc_id": "HR-SB-08",
+   "version": "2026.1",
+   "doc_family": "salary_bands",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "status": "active",
+   "allowed_roles": [
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations (Reward)",
+   "format": "docx",
+   "file": "data/corpus/salary_bands_2026.docx",
+   "source": "data/policies/salary_bands_2026.md"
+  },
+  {
+   "doc_key": "employee_faq",
+   "title": "People Operations FAQ",
+   "doc_id": "HR-FAQ-09",
+   "version": "2026-01-15",
+   "doc_family": "employee_faq",
+   "effective_from": "2026-01-15",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations",
+   "format": "html",
+   "file": "data/corpus/employee_faq.html",
+   "source": "data/policies/employee_faq.html"
+  },
+  {
+   "doc_key": "wellbeing_program_2026",
+   "title": "Wellbeing Program 2026",
+   "doc_id": "HR-WB-10",
+   "version": "2026.1",
+   "doc_family": "wellbeing_program",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations (Wellbeing team)",
+   "format": "md",
+   "file": "data/corpus/wellbeing_program_2026.md",
+   "source": "data/policies/wellbeing_program_2026.md"
+  },
+  {
+   "doc_key": "disciplinary_and_grievance_policy",
+   "title": "Disciplinary and Grievance Policy",
+   "doc_id": "HR-DG-11",
+   "version": "2026.1",
+   "doc_family": "disciplinary_and_grievance_policy",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations",
+   "format": "pdf",
+   "file": "data/corpus/disciplinary_and_grievance_policy.pdf",
+   "source": "data/policies/disciplinary_and_grievance_policy.md"
+  },
+  {
+   "doc_key": "learning_certification_procedure",
+   "title": "Learning and Certification Procedure",
+   "doc_id": "HR-LD-12",
+   "version": "2026.1",
+   "doc_family": "learning_certification_procedure",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations (Learning)",
+   "format": "docx",
+   "file": "data/corpus/learning_certification_procedure.docx",
+   "source": "data/policies/learning_certification_procedure.md"
+  },
+  {
+   "doc_key": "it_acceptable_use_policy",
+   "title": "IT Acceptable Use Policy",
+   "doc_id": "IT-AU-13",
+   "version": "2026.1",
+   "doc_family": "it_acceptable_use_policy",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "IT Security",
+   "format": "pdf",
+   "file": "data/corpus/it_acceptable_use_policy.pdf",
+   "source": "data/policies/it_acceptable_use_policy.md"
+  },
+  {
+   "doc_key": "overtime_and_on_call_policy",
+   "title": "Overtime and On-Call Policy",
+   "doc_id": "HR-OT-14",
+   "version": "2026.1",
+   "doc_family": "overtime_and_on_call_policy",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations",
+   "format": "pdf",
+   "file": "data/corpus/overtime_and_on_call_policy.pdf",
+   "source": "data/policies/overtime_and_on_call_policy.md"
+  },
+  {
+   "doc_key": "health_and_safety_policy",
+   "title": "Health and Safety Policy",
+   "doc_id": "HS-01-15",
+   "version": "2026.1",
+   "doc_family": "health_and_safety_policy",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "Facilities and People Operations",
+   "format": "md",
+   "file": "data/corpus/health_and_safety_policy.md",
+   "source": "data/policies/health_and_safety_policy.md"
+  },
+  {
+   "doc_key": "employee_privacy_notice",
+   "title": "Employee Privacy Notice",
+   "doc_id": "DP-PN-16",
+   "version": "2026.1",
+   "doc_family": "employee_privacy_notice",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "Data Protection Officer",
+   "format": "pdf_two_column",
+   "file": "data/corpus/employee_privacy_notice.pdf",
+   "source": "data/policies/employee_privacy_notice.md"
+  },
+  {
+   "doc_key": "internal_mobility_policy",
+   "title": "Internal Mobility Policy",
+   "doc_id": "HR-IM-17",
+   "version": "2026.1",
+   "doc_family": "internal_mobility_policy",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "en",
+   "owner": "People Operations",
+   "format": "docx",
+   "file": "data/corpus/internal_mobility_policy.docx",
+   "source": "data/policies/internal_mobility_policy.md"
+  },
+  {
+   "doc_key": "ramadan_working_hours_ar",
+   "title": "سياسة ساعات العمل في شهر رمضان (Ramadan Working Hours)",
+   "doc_id": "HR-RW-02-R",
+   "version": "2026.1",
+   "doc_family": "ramadan_working_hours",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "all"
+   ],
+   "language": "ar",
+   "owner": "People Operations",
+   "format": "docx",
+   "file": "data/corpus/ramadan_working_hours_ar.docx",
+   "source": "data/policies/ramadan_working_hours_ar.md"
+  },
+  {
+   "doc_key": "alexandria_office_guidelines_ar",
+   "title": "إرشادات مكتب الإسكندرية (Alexandria Office Guidelines)",
+   "doc_id": "HR-RG-ALX-01",
+   "version": "2026.1",
+   "doc_family": "alexandria_office_guidelines",
+   "effective_from": "2026-01-01",
+   "effective_to": null,
+   "status": "active",
+   "allowed_roles": [
+    "employee",
+    "manager",
+    "hr_staff"
+   ],
+   "regions": [
+    "Alexandria"
+   ],
+   "language": "ar",
+   "owner": "People Operations, Alexandria",
+   "format": "md",
+   "file": "data/corpus/alexandria_office_guidelines_ar.md",
+   "source": "data/policies/alexandria_office_guidelines_ar.md"
+  }
+ ]
+}

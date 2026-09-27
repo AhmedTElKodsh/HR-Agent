@@ -1,0 +1,23 @@
+MARINA GIRGIS
+Senior Data Scientist · Cairo
+marina.girgis@example.com · +20 100 000 0004
+
+SUMMARY
+Data scientist with 8 years of experience across e-commerce and telecom. Looking for a role with a better work-life balance and a return to hands-on analysis.
+
+EXPERIENCE
+Senior Data Scientist, ShopFast (fictional) — Jan 2021 to present
+- Led a team of 4 building demand-forecasting and pricing models in Python (pandas, scikit-learn).
+- Owned the experimentation platform; reviewed 50+ A/B tests per year.
+- Built executive dashboards in Tableau.
+
+Data Analyst, TeleNet (fictional) — Jun 2018 to Dec 2020
+- Built SQL Server and Snowflake reporting for customer retention.
+- Automated Excel reporting and scheduled pipelines in Airflow.
+
+EDUCATION
+MSc Data Science — 2018
+BSc Computer Science — 2016
+
+SKILLS
+Python (pandas, scikit-learn, PySpark), SQL (SQL Server, Snowflake), Tableau, Airflow, statistics, A/B testing, Excel
