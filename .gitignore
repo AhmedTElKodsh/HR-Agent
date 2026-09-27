@@ -48,3 +48,6 @@ Thumbs.db
 # reported number depends on, and regenerating them must stay reproducible
 # rather than assumed. Do not add them here without changing how results
 # are reproduced.
+
+# Third-party reference material kept locally, not published (this repo is public)
+docs/private/

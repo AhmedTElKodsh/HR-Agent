@@ -1,0 +1,96 @@
+{
+  "job_id": "junior_ai_engineer",
+  "scoring": {
+    "yes": 1.0,
+    "partial": 0.5,
+    "no": 0.0
+  },
+  "score_formula": "100 * sum(weight * scoring[level]) / sum(weight)",
+  "tiers": {
+    "strong": 70,
+    "medium": 40,
+    "weak": 0
+  },
+  "tier_rule": "the highest tier whose threshold the score meets or exceeds",
+  "evidence_rule": "every yes or partial needs an evidence_quote that appears verbatim in the redacted CV; otherwise the level is no",
+  "excluded_from_scoring": [
+    "name",
+    "gender or pronouns",
+    "age or date of birth",
+    "nationality or ethnicity",
+    "religion",
+    "marital or family status",
+    "photo",
+    "address",
+    "degree or university",
+    "years of experience",
+    "employment gaps or career breaks",
+    "employer vs personal project (judge the depth of the work, not where it was done)"
+  ],
+  "requirements": [
+    {
+      "id": "R1",
+      "weight": 3,
+      "text": "Python for applications or data pipelines, with engineering practice",
+      "yes": "Python used in applications or pipelines with evidence of engineering practice: tests, packaging, CI or production use",
+      "partial": "Python scripting, basic use or coursework only"
+    },
+    {
+      "id": "R2",
+      "weight": 3,
+      "text": "Built an application on an LLM API, beyond basic prompting",
+      "yes": "An application calling an LLM API with depth: structured outputs or schema validation, an evaluation, or real users",
+      "partial": "A basic LLM application (prompting only, such as a simple chatbot or summariser). Using a chat UI such as ChatGPT is 'no'"
+    },
+    {
+      "id": "R3",
+      "weight": 3,
+      "text": "Embeddings, vector databases and RAG",
+      "yes": "Built retrieval over documents (embeddings + vector store feeding an LLM) with depth: retrieval evaluation, tuning such as chunking, or real users",
+      "partial": "A basic embeddings/RAG project without evaluation or tuning, or coursework on the topic"
+    },
+    {
+      "id": "R4",
+      "weight": 2,
+      "text": "Evaluating ML or LLM systems",
+      "yes": "Designed a test set or evaluation: held-out data, metrics and error analysis",
+      "partial": "Reported a metric without describing how the evaluation was designed"
+    },
+    {
+      "id": "R5",
+      "weight": 2,
+      "text": "Built a REST API",
+      "yes": "Built and exposed REST endpoints with a web framework (FastAPI, Flask, Spring Boot, Express or similar)",
+      "partial": "A single basic or personal endpoint"
+    },
+    {
+      "id": "R6",
+      "weight": 1,
+      "text": "Git",
+      "yes": "Uses Git or a Git-based CI (GitHub Actions, GitLab CI)",
+      "partial": null
+    },
+    {
+      "id": "R7",
+      "weight": 1,
+      "text": "Docker",
+      "yes": "Containerised an application or service",
+      "partial": null
+    },
+    {
+      "id": "N1",
+      "weight": 1,
+      "text": "Agents and tool/function calling",
+      "yes": "Built an agent or a tool-calling workflow",
+      "partial": "Used LLM frameworks such as LangChain without tools or agents"
+    },
+    {
+      "id": "N2",
+      "weight": 1,
+      "text": "Cloud deployment",
+      "yes": "Deployed or ran a service on a cloud platform",
+      "partial": null
+    }
+  ],
+  "partial_null_means": "this requirement has no partial level: yes or no only"
+}
