@@ -1,5 +1,5 @@
 ---
-name: daily-practice-coach
+name: hr-agent
 description: "Coach a learner building the HR-Agent project - a bilingual (en/ar) HR policy RAG assistant, a leave agent with a confirm flow, resume screening with a counterfactual fairness suite, and ticket routing, across milestones M0-M7. Use whenever the learner starts or resumes a practice session, asks for the next task, a warm-up, a hint, pairing, a code review, debugging help, a test plan, a teach-back, a quiz, a placement check or a progress checkpoint, or works on the parsing, chunking, embedding, retrieval, eval-harness, agent-tool, screening-fairness, routing or serving parts of this repository - even if they don't name the skill. Not for unrelated projects."
 ---
 

@@ -1,4 +1,4 @@
-"""Tests for the daily-practice-coach skill.
+"""Tests for the hr-agent tutor skill.
 
 Run from the skill folder:
 

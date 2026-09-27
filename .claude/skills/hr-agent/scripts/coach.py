@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Learner-progress helper for the HR-Agent daily-practice-coach skill.
+"""Learner-progress helper for the hr-agent tutor skill.
 
 Standard library only. Reads and writes the learner state described in
 references/progress-protocol.md:
