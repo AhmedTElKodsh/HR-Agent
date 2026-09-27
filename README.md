@@ -22,3 +22,5 @@ python scripts/validate_data.py         # check that everything is consistent
 ```
 
 The ticket-routing dataset (milestone M5) is public and licensed CC BY-NC 4.0 (see `data/tickets/README.md`). Credit its author if you publish results.
+
+A private, local-only copy of the interview mock this project replicates is kept at `docs/private/` (git-ignored, not published here) so its case brief and model answers stay out of a public repo. See the honesty rule in `docs/PLAN.md`.
